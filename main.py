@@ -1,7 +1,6 @@
 import gym
 import numpy as np
-
-eval_steps = 500
+from matplotlib import pyplot as plt
 
 class EvolOrg:
   def __init__(self):
@@ -24,15 +23,18 @@ class EvolOrg:
 
   def mutate(self):
     # TODO: Implement This!
-    return
+    # make sure to return a new org (deepcopy)
+    return self;
   
   def recombine(self, other_org):
-    # TODO: Implement This!
-    pass
+    # TODO: Implement This (maybe)!
+    # make sure to return a new org (deepcopy)
+    return self;
 
 class EvolPop:
   def __init__(self, num_orgs):
     self.pop_size = num_orgs
+    self.generation = 0
     self.gym_environment = gym.make("BipedalWalker-v3")
     self.population = [EvolOrg() for _ in range(num_orgs)]
 
@@ -53,8 +55,41 @@ class EvolPop:
 
         #update the fitness with this step's reward
         org_fitness += reward
+
+        #triggers when the robot falls over -- best to save these CPU cycles! 
+        if done:
+          break
+
       org.update_fitness(org_fitness)
 
   def select_org(self):
-    #TODO: Implement this
+    #TODO: Implement a better selection operation
     return np.random.choice(self.population)
+
+  def do_evolution_timestep(self, mut_prob, recomb_prob=0.0):
+    self.evaluate_orgs()
+    new_pop = []
+    for i in range(self.pop_size):
+      new_org = self.select_org()
+
+      if np.random.rand() < mut_prob:
+        new_org.mutate()
+      new_pop.append(new_org)
+      
+      #maybe do recombination, too...
+
+    self.population = new_pop
+    self.generation += 1
+  
+  def get_mean_fitness(self):
+    return np.mean([org.fitness for org in self.population])
+
+# Driver Code
+my_pop = EvolPop(num_orgs=20)
+for i in range(20):
+  my_pop.do_evolution_timestep(mut_prob=0.5)
+  print("Generation: {0}, Mean Fitness: {1}".format(i, my_pop.get_mean_fitness()))
+
+#Let's watch the last generation of organisms!
+#When these actually have brains, it'll hopefully be much more interesting to watch! 
+my_pop.evaluate_orgs(render=True)
