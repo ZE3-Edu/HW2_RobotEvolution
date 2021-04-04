@@ -2,6 +2,7 @@
 
 ## Overview
 In this homework assignment, you'll be taking everything we've learned so far and applying it to a fun challenging problem -- evolving a simple [bipedal robot](https://gym.openai.com/envs/BipedalWalker-v2/) that needs to balance (at least in 2d) and move through its world. 
+
 ![](https://raw.githubusercontent.com/ZE3-Edu/HW2_RobotEvolution/master/biped.png?token=AAAUTBYOW7PTKH3XKZ23B6TANDX4O)
 
 
