@@ -3,7 +3,7 @@
 ## Overview
 In this homework assignment, you'll be taking everything we've learned so far and applying it to a fun challenging problem -- evolving a simple [bipedal robot](https://gym.openai.com/envs/BipedalWalker-v2/) that needs to balance (at least in 2d) and move through its world. 
 
-![](https://raw.githubusercontent.com/ZE3-Edu/HW2_RobotEvolution/master/biped.png?token=AAAUTBYOW7PTKH3XKZ23B6TANDX4O)
+![](https://raw.githubusercontent.com/ZE3-Edu/HW2_RobotEvolution/master/biped.png?token=AAAUTB23XSAJYVYIUER6RKLANEA46)
 
 
 You can use our simple neural network class we've been building up (you'll have to re-scale the output to be in the range of -1 to 1 instead of 0 to 1 -- e.g., scale_x(x)=x*2-1). You could also use our Genetic Programing tools, with a slight modification to make sure you are within the range of output, and have the right number of outputs (4 in this case). 
